@@ -1,4 +1,4 @@
-# Spring + MyBatis 연동 CRUD 예제 프로젝트
+# Spring + MyBatis 연동 CRUD 예제 프로젝트 (25/10/22)
 
 Spring Legacy (non-Boot) 환경에서 MyBatis를 연동하여 다양한 DB 쿼리 방식을 연습하기 위한 예제 프로젝트입니다.
 
