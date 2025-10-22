@@ -14,8 +14,25 @@ commit;
 
 select * from tblAddress;
 
+
 insert into tblAddress
     values (seqAddress.nextval, '홍길동', 20, '서울시 강남구 대치동', 'm');
+
+insert into tblAddress
+    values (seqAddress.nextval, '아무개', 25, '서울시 강남구 대치동', 'm');
+
+insert into tblAddress
+    values (seqAddress.nextval, '강아지', 25, '서울시 강남구 대치동', 'm');
+
+insert into tblAddress
+    values (seqAddress.nextval, '고양이', 25, '서울시 강남구 대치동', 'm');
+
+insert into tblAddress
+    values (seqAddress.nextval, '병아리', 25, '서울시 강남구 대치동', 'm');
+
+insert into tblAddress
+    values (seqAddress.nextval, '호호호', 25, '서울시 강남구 대치동', 'm');
+
 
 
 

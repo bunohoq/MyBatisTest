@@ -8,9 +8,16 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="http://bit.ly/3WJ5ilK" />
 </head>
-<body>
+<body class="wide">
 	
-	<!--  -->
+	<!-- result.jsp -->
+	<h1>쿼리 결과</h1>
+	
+	<div>result: ${result}</div>
+
+	<div>name: ${name}</div>
+
+	<div>dto: ${dto}</div>
 	
 </body>
 </html>
