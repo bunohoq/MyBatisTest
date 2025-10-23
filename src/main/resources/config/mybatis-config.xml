@@ -9,6 +9,7 @@
 	<!-- XML Mapper에서 사용중인 클래스의 별칭 -->
 	<typeAliases>
 		<typeAlias type="com.test.java.model.AddressDTO" alias="adto" />
+		<typeAlias type="com.test.java.model.InsaDTO" alias="idto" />
 	</typeAliases>
 	
 </configuration>

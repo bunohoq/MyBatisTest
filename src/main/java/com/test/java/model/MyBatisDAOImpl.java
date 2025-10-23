@@ -1,5 +1,7 @@
 package com.test.java.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -120,6 +122,49 @@ public class MyBatisDAOImpl implements MyBatisDAO {
 	public List<AddressDTO> m8() {
 		
 		return template.selectList("address.m8");
+	}
+	
+	@Override
+	public List<AddressDTO> m9(HashMap<String, String> map) {
+		
+		return template.selectList("address.m9", map);
+	}
+	
+	@Override
+	public List<AddressDTO> m10(int age) {
+		
+		return template.selectList("address.m10", age);
+	}
+	
+	@Override
+	public List<AddressDTO> m11(String word) {
+		
+		return template.selectList("address.m11", word);
+	}
+	
+	@Override
+	public List<AddressDTO> m12(String gender) {
+		
+		return template.selectList("address.m12", gender);
+	}
+	
+	@Override
+	public List<AddressDTO> m13(AddressDTO dto) {
+
+		return template.selectList("address.m13", dto);
+	}
+	
+	@Override
+	public List<InsaDTO> m14(ArrayList<String> buseo) {
+		
+		return template.selectList("address.m14", buseo);
+	}
+	
+	@Override
+	public void add(AddressDTO dto) {
+		
+		template.insert("address.add", dto);
+		
 	}
 	
 }

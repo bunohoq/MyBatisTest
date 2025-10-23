@@ -35,4 +35,15 @@ insert into tblAddress
 
 
 
+create table tblPoint (
+    seq number primary key,
+    point number default  100 not null,
+    aseq number not null  references tblAddress(seq)
+);
+
+create sequence seqPoint;
+
+select * from tblAddress;
+
+commit;
 

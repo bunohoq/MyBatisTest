@@ -69,4 +69,171 @@
 			order by name asc
 	</select>
 	
+	<!--  
+		MyBatis 바인딩 표현식
+		1. #{}: 값을 바인딩(데이터) > 오라클의 ?와 동일
+		2. ${}: 식별자를 바인딩 > 그냥 적는다.
+	-->
+	<select id="m9" parameterType="map" resultType="adto">
+		select * from tblAddress
+			where ${column} = #{word}
+	</select>
+	
+	
+	<select id="m10" parameterType="Integer" resultType="adto">
+		<!-- 
+		select * from tblAddress
+			where age &lt; #{age} 
+		-->
+		
+		<!-- 
+			ML의 문자열
+			1. PCDATA
+			2. CDATA
+		 -->
+		
+		select * from tblAddress
+			<![CDATA[
+			where age < #{age} 
+			]]>			
+	</select>
+	
+	<select id="m11" parameterType="String" resultType="adto">
+	
+		<!-- 
+			select * from tblAddress
+				where address like '%' || #{word} || '%'
+		 -->
+		 
+		select * from tblAddress
+			where address like '%${word}%'
+	
+	</select>
+	
+	<select id="m12" parameterType="String" resultType="adto">
+		
+		<!--  
+			동적 쿼리
+			- 상황에 따라 쿼리 구문의 일부를 다르게 만들어야 하는 경우
+			
+			MyBatis 동적 쿼리
+			- <if>, <choose>, <foreach> 등..
+		-->
+		
+		<!-- 
+		
+		<if test='gender == "m"'>
+		select * from tblAddress where gender = 'm'
+		</if>
+		
+		<if test="gender == 'f'.toString()">
+		select * from tblAddress where gender = 'f'
+		</if>
+		
+		<if test='gender == "all"'>
+		select * from tblAddress
+		</if> 
+		
+		-->
+
+		
+		<!-- 
+		
+		select * from tblAddress 
+			<if test='gender == "m"'>
+			where gender = 'm'
+			</if>
+			<if test="gender == 'f'.toString()">			
+			where gender = 'f'
+			</if> 
+			
+		-->
+		
+		<!-- 
+		select * from tblAddress
+			<if test='gender != "all"'>
+			where gender =#{gender}
+			</if>
+		 -->
+		 
+		 select * from tblAddress
+		 	<choose>
+		 		<when test="gender == 'm'.toString()">
+		 			where gender = 'm'
+		 		</when>
+		 		<when test="gender == 'f'.toString()">
+		 			where gender = 'f'
+		 		</when>
+		 		<otherwise>
+		 			
+		 		</otherwise>
+		 	
+		 	</choose>
+			
+	</select>
+	
+	<select id="m13" parameterType="adto" resultType="adto">
+		
+		<!-- 	
+		select * from tblAddress where 1=1
+		
+			 	<if test="age !=null">
+			 	and age &lt; = #{age}
+			 	</if>
+			 	<if test="gender != null">
+			 	and gender = #{gender}
+			 	</if>
+			 	<if test="address != null">
+				and address like '%' || #{address} || '%'
+				</if>
+	
+		 -->
+		 
+		select * from tblAddress 
+			<where>
+			 	<if test="age !=null">
+			 	and age &lt; = #{age}
+			 	</if>
+			 	<if test="gender != null">
+			 	and gender = #{gender}
+			 	</if>
+			 	<if test="address != null">
+				and address like '%' || #{address} || '%'
+				</if>
+			</where>
+	</select>
+	
+	<select id="m14" parameterType="list" resultType="idto">
+		
+		<!-- 
+		select 
+			num, name, buseo, jikwi, basicpay
+		from tblInsa
+			where buseo in ( #{0}, #{1}, #{2})
+		-->
+		
+		select 
+			num, name, buseo, jikwi, basicpay as salary
+		from tblInsa
+			<where>
+				<foreach collection="list" item="item" open="buseo in (" close=")" separator=",">
+					#{item}
+				</foreach>
+			</where>
+			
+			<!-- 
+				WHERE '영업부' '총무부' '개발부'  
+				WHERE 111 '영업부' 333 '총무부' 333 '개발부' 222
+				WHERE buseo in ( '영업부' , '총무부' , '개발부' ) 
+			
+			 -->
+		
+	</select>
+	
+	<insert id="add" parameterType="adto">
+		insert into tblAddress 
+			values (seqAddress.nextval, #{name}, #{age}, #{address}, #{gender})
+	</insert>
+
+	
 </mapper>
