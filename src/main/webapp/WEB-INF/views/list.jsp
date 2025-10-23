@@ -35,6 +35,23 @@
 		</tr>
 		</c:forEach>
 	</table>
+
+	<table>
+		<c:forEach items="${ilist}" var="idto">
+		<tr>
+			<td>${idto.num}</td>
+			<td>${idto.name}</td>
+			<td>${idto.buseo}</td>
+			<td>${idto.jikiwi}</td>
+			<td>${idto.salary}</td>
+			<td>
+				<c:forEach items="${idto.project} var="pdto">
+					<li>${pdto.name}</li>
+				</c:forEach>
+			</td>
+		</tr>
+		</c:forEach>
+	</table>
 	
 </body>
 </html>
