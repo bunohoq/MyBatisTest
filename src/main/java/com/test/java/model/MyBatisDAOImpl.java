@@ -167,6 +167,25 @@ public class MyBatisDAOImpl implements MyBatisDAO {
 		
 	}
 	
+	@Override
+	public String getSeq() {
+		
+		return template.selectOne("address.getSeq");
+	}
+	
+	@Override
+	public void addPoint(PointDTO pdto) {
+
+		template.insert("address.addPoint", pdto);
+		
+	}
+	@Override
+	public List<AddressPointDTO> m17() {
+		
+		return template.selectList("address.m17");
+	}
+	
+	
 }
 
 

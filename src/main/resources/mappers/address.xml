@@ -234,6 +234,39 @@
 		insert into tblAddress 
 			values (seqAddress.nextval, #{name}, #{age}, #{address}, #{gender})
 	</insert>
+	
+	<select id="getSeq" resultType="String">
+		select max(seq) from tblAddress
+	</select>
+	
+	<!--
+	<insert id="addPoint" parameterType="pdto">
+		insert into tblPoint
+			values (seqPoint.nextVal, #{point}, #{aseq})
+	</insert>
+	-->
+	
+	<insert id="addPoint" parameterType="pdto">
+	
+		<!-- 특정 컬럼값을 가져오기(select PK) -->
+		<selectKey order="BEFORE" resultType="String" keyProperty="aseq">
+			select max(seq) from tblAddress
+		</selectKey>
+		
+		insert into tblPoint
+			values (seqPoint.nextVal, #{point}, #{aseq})
+	</insert>
+	
+	<select id="m17" resultType="apdto">
+	
+		select 
+			a.seq, a.name,a.age, a.address, a.gender,
+			p.seq as pseq, p.point, p.aseq
+		from tblAddress a
+			left outer join tblPoint p
+				on a.seq = p.aseq
+				
+	</select>
 
 	
 </mapper>

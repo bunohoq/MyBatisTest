@@ -7,6 +7,7 @@ import java.util.Map;
 
 public interface MyBatisDAO {
 
+
 	void m1();
 
 	int m2(String seq);
@@ -36,5 +37,12 @@ public interface MyBatisDAO {
 	List<InsaDTO> m14(ArrayList<String> buseo);
 
 	void add(AddressDTO dto);
+
+	String getSeq();
+
+	void addPoint(PointDTO pdto);
+
+	List<AddressPointDTO> m17();
+
 
 }

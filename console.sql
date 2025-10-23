@@ -45,5 +45,12 @@ create sequence seqPoint;
 
 select * from tblAddress;
 
+select * from tblPoint;
+
 commit;
 
+select
+			*
+		from tblAddress a
+			left outer join tblPoint p
+				on a.seq = p.aseq

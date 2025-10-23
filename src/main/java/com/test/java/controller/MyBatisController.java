@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.java.model.AddressDTO;
+import com.test.java.model.AddressPointDTO;
 import com.test.java.model.InsaDTO;
 import com.test.java.model.MyBatisDAO;
 import com.test.java.model.PointDTO;
@@ -267,8 +268,8 @@ public class MyBatisController {
 		
 		//Address 추가
 		AddressDTO dto = new AddressDTO();
-		dto.setName("거북이");
-		dto.setAge(300);
+		dto.setName("자라");
+		dto.setAge(220);
 		dto.setGender("m");
 		dto.setAddress("용궁");
 		
@@ -276,12 +277,54 @@ public class MyBatisController {
 		
 		// 방금 추가한 Address > Point 추가
 		
+		//select max(seq) from tblAddress
+		
+		String seq = dao.getSeq();
+		
 		PointDTO pdto = new PointDTO();
 		pdto.setPoint(200);
-		pdto.setAseq(???);
+		pdto.setAseq(seq);
 		
+		dao.addPoint(pdto);
 		
 		return "result";
+	}
+
+	@GetMapping("/m16.do")
+	public String m16(Model model) {
+		
+		//1. insert + tblAddress
+		//2. insert + tblPoint
+		
+		//Address 추가
+		AddressDTO dto = new AddressDTO();
+		dto.setName("연어");
+		dto.setAge(1);
+		dto.setGender("m");
+		dto.setAddress("노르웨이");
+		
+		dao.add(dto);
+		
+		PointDTO pdto = new PointDTO();
+		pdto.setPoint(300);
+		
+		dao.addPoint(pdto);
+		
+		return "result";
+	}
+	
+	@GetMapping("/m17.do")
+	public String m18(Model model) {
+		
+		//Join
+		// - tblAddress + tblPoint
+		
+		List<AddressPointDTO> list = dao.m17();
+		
+		//log
+		
+		return "result";
+		
 	}
 	
 	
