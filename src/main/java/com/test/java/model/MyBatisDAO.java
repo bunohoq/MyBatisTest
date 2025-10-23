@@ -44,5 +44,9 @@ public interface MyBatisDAO {
 
 	List<AddressPointDTO> m17();
 
+	List<AddressDTO> m18();
+
+	List<InsaDTO> m19();
+
 
 }

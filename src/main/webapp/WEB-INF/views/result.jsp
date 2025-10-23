@@ -19,5 +19,13 @@
 
 	<div>dto: ${dto}</div>
 	
+	<hr>
+	
+	<c:forEach items="${alist}" var="adto">
+		<div>
+			${adto}
+		</div>
+	</c:forEach>
+	
 </body>
 </html>

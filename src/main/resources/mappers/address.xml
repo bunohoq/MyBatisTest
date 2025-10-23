@@ -267,6 +267,66 @@
 				on a.seq = p.aseq
 				
 	</select>
+	
+	<resultMap type="pdto" id="pointMap">
+		<id column="pseq" property="seq"></id>
+		<result column="point" property="point"/>
+		<result column="aseq" property="aseq"/>
+	</resultMap>
+	
+	<resultMap type="adto" id="addressMap">
+		<!-- 
+			컬럼 매핑
+			- 밑의 select 결과 컬럼 > (연결) > adto의 Setter
+		-->
+		<id column="seq" property="seq"/><!-- PK -->
+		<result column="name" property="name"/><!-- 일반컬럼 -->
+		<result column="age" property="age"/>
+		<result column="address" property="address"/>
+		<result column="gender" property="gender"/>
+		<association property="pdto" resultMap="pointMap"></association> 
+	</resultMap>
+	
+	<select id="m18" resultMap="addressMap">
+		select 
+			a.seq, a.name,a.age, a.address, a.gender,
+			p.seq as pseq, p.point, p.aseq
+		from tblAddress a
+			left outer join tblPoint p
+				on a.seq = p.aseq
+	</select>
+	
+	<resultMap type="idto" id="insaMap">
+		<id column="inum" property="num"/>
+		<result column="iname" property="name"/>
+		<result column="buseo" property="buseo"/>
+		<result column="jikiwi" property="jikiwi"/>
+		<result column="basicpay" property="salary"/>
+		<collection property="project" resultMap="projectMap"></collection>
+	</resultMap>
+	
+	<resultMap type="com.test.java.model.ProjectDTO" id="projectMap">
+		<id column="seq" property="seq"/>
+		<result column="pname" property="name"/>
+		<result column="pnum" property="num"/>
+	</resultMap>
+	
+	<select id="m19" resultMap="insaMap">
+	
+		select 
+			i.num as inum,
+			i.name as iname,
+			i.buseo,
+			i.jikiwi,
+			i.basicpay,
+			p.seq,
+			p.name as pname,
+			p.num as pnum
+		from tblInsa i
+			left outer join tblProject p
+				on i.num = p.num
+	
+	</select>
 
 	
 </mapper>

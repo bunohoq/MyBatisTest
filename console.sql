@@ -53,4 +53,27 @@ select
 			*
 		from tblAddress a
 			left outer join tblPoint p
-				on a.seq = p.aseq
+				on a.seq = p.aseq;
+
+
+--tblInsa <-> tblProject
+create table tblProject (
+    seq number primary key,
+    name varchar2(100) not null,
+    location varchar2(100) not null,
+    num number not null references tblInsa(num)
+);
+
+insert into tblProject values (1, '해외 수출', '서울', 1001);
+insert into tblProject values (2, 'TV 광고', '부산', 1002);
+insert into tblProject values (3, '고객 홍보', '울산', 1001);
+insert into tblProject values (4, '자재 매입', '광주', 1003);
+insert into tblProject values (5, '재고 확보', '대전', 1001);
+
+commit;
+
+select
+			*
+		from tblInsa i
+			left outer join tblProject p
+				on i.num = p.num;

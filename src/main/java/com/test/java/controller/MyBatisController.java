@@ -314,7 +314,7 @@ public class MyBatisController {
 	}
 	
 	@GetMapping("/m17.do")
-	public String m18(Model model) {
+	public String m17(Model model) {
 		
 		//Join
 		// - tblAddress + tblPoint
@@ -326,6 +326,33 @@ public class MyBatisController {
 		return "result";
 		
 	}
+	
+	@GetMapping("/m18.do")
+	public String m18(Model model) {
+		
+		//Join
+		//- tblAddress + tblPoint
+		
+		//관계 > 부모 테이블
+		List<AddressDTO> alist = dao.m18();
+		
+		model.addAttribute("alist", alist);
+		
+		return "result";
+	}
+	
+	@GetMapping("/m19.do")
+	public String m19(Model model) {
+		
+		// - 1(tblAddress) : N(tblProject)
+		List<InsaDTO> ilist = dao.m19();
+		
+		model.addAttribute("ilist", ilist);
+		
+		return "result";
+	}
+	
+	
 	
 	
 

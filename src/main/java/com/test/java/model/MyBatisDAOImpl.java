@@ -185,6 +185,18 @@ public class MyBatisDAOImpl implements MyBatisDAO {
 		return template.selectList("address.m17");
 	}
 	
+	@Override
+	public List<AddressDTO> m18() {
+		
+		return template.selectList("address.m18");
+	}
+	
+	@Override
+	public List<InsaDTO> m19() {
+	
+		return template.selectList("address.m19");
+	}
+	
 	
 }
 
